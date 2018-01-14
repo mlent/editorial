@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+<section>
+  <header class="major">
+    <h2>Recent articles</h2>
+  </header>
+  <div class="posts">
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+
+    {{ range $index, $page := .Paginator.Pages }}
+      {{ .Render "li" }}
+    {{ end }}
+  </div>
+</section>
+
+<center>
+  {{ partial "pagination.html" $paginator }}
+</center>
+
+{{ partial "footer.html" . }}

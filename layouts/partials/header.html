@@ -1,14 +1,40 @@
 <!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Editorial by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} | {{ end }}{{ .Site.Title }}" />
+		<meta property="og:site_name" content="{{ .Site.Title }}" />
+		<meta property="og:url" content="{{ .Permalink }}" />
+
+		{{ if .IsPage }}
+			<meta property="og:image" content="{{ substr .Site.BaseURL 0 -1 }}{{ (.Params.twitterimage) or (.Params.image) }}">
+			<meta property="og:type" content="article" />
+			<meta property="article:author" content="{{ .Site.Params.facebook }}" />
+			<meta property="article:publisher" content="{{ .Site.Params.facebook }}" />
+			<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
+			<meta name="twitter:creator" content="@{{ .Site.Params.twitter }}" />
+			<meta name="twitter:title" content="{{ .Title }}" />
+			<meta name="twitter:description" content="{{ .Description }}" />
+			<meta name="twitter:url" content="{{ .Permalink }}" />
+			<meta name="twitter:image" content="{{ substr .Site.BaseURL 0 -1 }}{{ (.Params.twitterimage) or (.Params.image) }}">
+		{{ else }}
+			<meta property="og:type" content="website" />
+		{{ end }}
+
+		<title>{{ if ne .URL "/" }} {{ .Title }} | {{ end }} {{ .Site.Title }}</title>
+
+		{{ if .Description }}
+			<meta name="description" content="{{ .Description }}" />
+			<meta property="og:description" content="{{ .Description }}"/>
+		{{ else }}
+			<meta name="description" content="{{ .Site.Params.Subtitle }}" />
+			<meta property="og:description" content="{{ .Site.Params.Subtitle }}"/>
+		{{ end }}
+
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
