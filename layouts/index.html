@@ -20,17 +20,19 @@
     <!-- Section -->
       <section>
         <header class="major">
-          <h2>Ipsum sed dolor</h2>
+          <h2>Recent articles</h2>
         </header>
         <div class="posts">
-          {{ $paginator2 := .Paginate (where .Data.Pages "Type" "post") }}
+          {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 
           {{ range $index, $page := .Paginator.Pages }}
             {{ .Render "li" }}
           {{ end }}
+
         </div>
       </section>
-  </div>
-</div>
+      <section>
+        {{ partial "pagination.html" $paginator }}
+      </section>
 
 {{ partial "footer.html" . }}
