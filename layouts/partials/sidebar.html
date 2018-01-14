@@ -1,65 +1,67 @@
 <!-- Sidebar -->
-  <div id="sidebar">
-    <div class="inner">
+<div id="sidebar">
+  <div class="inner">
+    <section class="alt">
+      <h2 class="site-title">
+        <a href="{{ .Site.BaseURL }}">{{ .Site.Params.Title }}</a>
+      </h2>
+    </section>
 
-      <!-- Search -->
-        <section id="search" class="alt">
-          <form method="post" action="#">
-            <input type="text" name="query" id="query" placeholder="Search" />
-          </form>
-        </section>
+    <nav id="menu">
+      {{ $currentPage := . }}
+      <ul>
+        {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+            <li>
+              <span class="opener">{{ .Name }}</span>
+              <ul>
+                {{ range .Children }}
+                  <li><a href="{{ .URL }}">{{ .URL }}</a></li>
+                {{ end }}
+              </ul>
+            </li>
+          {{ else }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </nav>
 
-        <nav id="menu">
-          <header class="major">
-            <h2>{{ .Site.Params.NavTitle }}</h2>
-          </header>
-          {{ $currentPage := . }}
-          <ul>
-            {{ range .Site.Menus.main }}
-              {{ if .HasChildren }}
-                <li>
-                  <span class="opener">{{ .Name }}</span>
-                  <ul>
-                    {{ range .Children }}
-                      <li><a href="{{ .URL }}">{{ .URL }}</a></li>
-                    {{ end }}
-                  </ul>
-                </li>
-              {{ else }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-              {{ end }}
-            {{ end }}
-          </ul>
-        </nav>
+    <!-- Search -->
+    <section id="search" class="alt" style="display: none">
+      <form method="post" action="#">
+        <input type="text" name="query" id="query" placeholder="Search" />
+      </form>
+    </section>
 
-      <!-- Section -->
-        <section>
-          <header class="major">
-            <h2>{{ .Site.Params.FeaturedArticlesTitle }}</h2>
-          </header>
-          <div class="mini-posts">
-            {{ range after 1 (first 3 $.Site.Taxonomies.tags.featured) }}
-              <article>
-                <a href="{{ .Page.URL }}" class="image">
-                  <img src="{{ .Page.Params.image }}" alt="" />
-                </a>
-                <p>{{ .Page.Title }}</p>
-              </article>
-            {{ end }}
-          <ul class="actions">
-            <li><a href="/tags/featured" class="button">More</a></li>
-          </ul>
-        </section>
+  <!-- Section -->
+    <section>
+      <header class="major">
+        <h2>{{ .Site.Params.FeaturedArticlesTitle }}</h2>
+      </header>
+      <div class="mini-posts">
+        {{ range after 1 (first 3 $.Site.Taxonomies.tags.featured) }}
+          <article>
+            <a href="{{ .Page.URL }}" class="image">
+              <img src="{{ .Page.Params.image }}" alt="" />
+            </a>
+            <p>{{ .Page.Title }}</p>
+          </article>
+        {{ end }}
+      <ul class="actions">
+        <li><a href="/tags/featured" class="button">More</a></li>
+      </ul>
+    </section>
 
-      <!-- Section -->
-        <section>
-          <header class="major">
-            <h2>{{ .Site.Params.ContactTitle }}</h2>
-          </header>
-          <p>
-            {{ .Site.Params.ContactDescription }}
-          </p>
-          <ul class="contact">
-            <li class="fa-envelope-o"><a href="mailto:{{ .Site.Params.ContactEmail }}">{{ .Site.Params.ContactEmail }}</a></li>
-          </ul>
-        </section>
+  <!-- Section -->
+    <section>
+      <header class="major">
+        <h2>{{ .Site.Params.ContactTitle }}</h2>
+      </header>
+      <p>
+        {{ .Site.Params.ContactDescription }}
+      </p>
+      <ul class="contact">
+        <li class="fa-envelope-o"><a href="mailto:{{ .Site.Params.ContactEmail }}">{{ .Site.Params.ContactEmail }}</a></li>
+      </ul>
+    </section>

@@ -28,12 +28,9 @@
           <h2>Recent articles</h2>
         </header>
         <div class="posts">
-
-
           {{ range $index, $page := .Paginator.Pages }}
             {{ .Render "li" }}
           {{ end }}
-
         </div>
       </section>
       <section>

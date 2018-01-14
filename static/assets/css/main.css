@@ -3587,11 +3587,20 @@
 		-webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 		-ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 		transition: margin-left 0.5s ease, box-shadow 0.5s ease;
-		background-color: #f5f6f7;
+		background-color: #fdfeff;
 		font-size: 0.9em;
 		position: relative;
 		width: 26em;
 	}
+
+    #sidebar .site-title {
+      font-size: 4em;
+    }
+
+    #sidebar .site-title a {
+      text-decoration: none;
+      border: 0;
+    }
 
 		#sidebar h2 {
 			font-size: 1.38889em;
@@ -3620,7 +3629,7 @@
 				}
 
 			#sidebar > .inner > .alt {
-				background-color: #eff1f2;
+				background-color: #fdfeff;
 				border-bottom: 0;
 				margin: -2.22222em 0 4.44444em -2.22222em;
 				padding: 2.22222em;
@@ -3792,7 +3801,6 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		border-bottom: solid 5px #f56a6a;
 		padding: 6em 0 1em 0;
 		position: relative;
 	}
@@ -3819,7 +3827,7 @@
 		@media screen and (max-width: 1680px) {
 
 			#header {
-				padding-top: 5em;
+				padding-top: 2em;
 			}
 
 		}
