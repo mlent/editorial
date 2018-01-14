@@ -1,0 +1,23 @@
+<nav id="menu">
+  <header class="major">
+    <h2>Content</h2>
+  </header>
+  {{ $currentPage := . }}
+  <ul>
+    {{ range .Site.Menus.main }}
+      {{ if .HasChildren }}
+        <li>
+          <span class="opener">{{ .Name }}</span>
+          <ul>
+            {{ range .Children }}
+              <li><a href="{{ .URL }}">{{ .URL }}</a></li>
+            {{ end }}
+          </ul>
+        </li>
+      {{ else }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</nav>
+
